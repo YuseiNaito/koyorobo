@@ -1,16 +1,16 @@
 #ifndef KOYO_RECEIVER_H
 #define KOYO_RECEIVER_H
-#include "datail.h"
+#include "data_list.h"
 
 namespace koyo {
 namespace receiver {
 class receiver {
 public:
   // for return
-  datail::signal signal_;
+  data_list::signal signal_;
 
   receiver();
-  datail::signal execute();
+  data_list::signal execute();
 };
 }
 }

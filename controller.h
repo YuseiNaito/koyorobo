@@ -1,16 +1,16 @@
 #ifndef KOYO_CONTROLLER_H
 #define KOYO_CONTROLLER_H
-#include "datail.h"
+#include "data_list.h"
 
 namespace koyo {
 namespace controller {
 class controller {
 public:
-  datail::command command_;
+  data_list::command command_;
 
   controller();
-  datail::command execute();
-  void set_command(const datail::command command);
+  data_list::command execute();
+  void set_command(const data_list::command command);
 };
 }
 }

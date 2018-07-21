@@ -1,14 +1,14 @@
 #ifndef KOYO_ACTION_BASE_H
 #define KOYO_ACTION_BASE_H
-#include "datail.h"
+#include "data_list.h"
 
 namespace koyo {
 namespace action {
 class base {
 public:
-  base(datail::signal& signal) ;
-  virtual datail::command execute() = 0;
-  datail::signal& signal_;
+  base(data_list::signal& signal) ;
+  virtual data_list::command execute() = 0;
+  data_list::signal& signal_;
 };
 }
 }

@@ -1,7 +1,7 @@
 #ifndef KOYO_ACTION_NORMAL_H
 #define KOYO_ACTION_NORMAL_H
 #include "action_base.h"
-#include "datail.h"
+#include "data_list.h"
 
 namespace koyo {
 namespace action {
@@ -11,9 +11,9 @@ public:
   using base::base;
 
   // for return
-  datail::command command_;
+  data_list::command command_;
 
-  datail::command execute();
+  data_list::command execute();
 };
 }
 }

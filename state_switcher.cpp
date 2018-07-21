@@ -6,10 +6,10 @@ namespace koyo {
 namespace state_switcher {
 state_switcher::state_switcher() {}
 
-action::base* state_switcher::execute(const datail::signal& signal) {
+action::base* state_switcher::execute(const data_list::signal& signal) {
   // update signal
   signal_ = signal;
-  
+
   for (int i = 0; i < 9; i++) {
     signals_[i + 1] = signals_[i];
   }

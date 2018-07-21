@@ -2,7 +2,7 @@
 
 namespace koyo {
 namespace action {
-  datail::command normal::execute() {
+  data_list::command normal::execute() {
     // sample
     command_.test_data = 2 * signal_.test_data;
 

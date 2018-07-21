@@ -4,14 +4,14 @@ namespace koyo {
 namespace controller {
   controller::controller() {}
 
-  datail::command controller::execute() {
+  data_list::command controller::execute() {
     // sample
     command_.test_data *= 2;
 
     return command_;
   }
 
-  void controller::set_command(const datail::command command){
+  void controller::set_command(const data_list::command command){
     command_ = command;
   }
 }

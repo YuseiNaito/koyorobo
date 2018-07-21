@@ -2,6 +2,6 @@
 
 namespace koyo {
 namespace action {
-  base::base(koyo::datail::signal& signal) : signal_(signal) {}
+  base::base(koyo::data_list::signal& signal) : signal_(signal) {}
 }
 }

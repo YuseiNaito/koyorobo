@@ -4,7 +4,7 @@ namespace koyo {
 namespace receiver {
   receiver::receiver() {}
 
-  datail::signal receiver::execute() {
+  data_list::signal receiver::execute() {
     // sample
     signal_.test_data = 39;
 

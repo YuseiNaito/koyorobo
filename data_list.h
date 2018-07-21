@@ -1,8 +1,8 @@
-#ifndef KOYO_DATAIL_H
-#define KOYO_DATAIL_H
+#ifndef KOYO_DATA_LIST_H
+#define KOYO_DATA_LIST_H
 
 namespace koyo {
-namespace datail {
+namespace data_list {
 // for input
 struct signal {
   // sample
