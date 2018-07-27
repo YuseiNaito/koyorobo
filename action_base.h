@@ -5,12 +5,13 @@
 namespace koyo {
 namespace action {
 class base {
-public:
-  base(data_list::signal& signal) ;
+ public:
+  explicit base(const data_list::signal& signal);
+  virtual ~base();
   virtual data_list::command execute() = 0;
-  data_list::signal& signal_;
+  const data_list::signal& signal_;
 };
-}
-}
+}  // namespace action
+}  // namespace koyo
 
 #endif

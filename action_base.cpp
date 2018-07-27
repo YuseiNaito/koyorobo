@@ -2,6 +2,7 @@
 
 namespace koyo {
 namespace action {
-  base::base(koyo::data_list::signal& signal) : signal_(signal) {}
-}
-}
+base::base(const data_list::signal& signal) : signal_(signal) {}
+base::~base() {}
+}  // namespace action
+}  // namespace koyo

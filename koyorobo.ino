@@ -11,20 +11,14 @@ koyo::state_switcher::state_switcher switcher;
 
 void setup() {
   run_flag = true;
-
-  // sample
-  Serial.begin(9600);
 }
 
 void loop() {
   if (run_flag) {
-    auto sw_ptr = switcher.execute(receiver.execute());
+	switcher.set_signal(receiver.execute());
+    auto sw_ptr = switcher.execute();
     controller.set_command(sw_ptr->execute());
-    auto returned_command = controller.execute();
-
-    // sample
-    Serial.println(returned_command.test_data);
-
+    controller.execute();
     delete sw_ptr;
   }
 }

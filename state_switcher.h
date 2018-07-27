@@ -6,18 +6,20 @@
 namespace koyo {
 namespace state_switcher {
 class state_switcher {
-public:
+ public:
   action::base* return_action_;
-  data_list::signal signals_[10];
-  enum class state{normal};
+  enum class state { normal };
   state_switcher::state_switcher::state current_state_;
 
   state_switcher();
-  action::base* execute(const data_list::signal& signal);
-private:
-    data_list::signal& signal_;
+  action::base* execute();
+  void set_signal(const data_list::signal& signal);
+
+ private:
+  const data_list::signal& signal_;
+  data_list::signal signals_[10];
 };
-}
-}
+}  // namespace state_switcher
+}  // namespace koyo
 
 #endif
