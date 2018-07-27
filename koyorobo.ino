@@ -10,6 +10,7 @@ koyo::receiver::receiver receiver;
 koyo::state_switcher::state_switcher switcher;
 
 void setup() {
+  Serial.begin(9600);
   run_flag = true;
 }
 

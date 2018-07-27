@@ -6,7 +6,7 @@ namespace koyo {
 namespace controller {
 controller::controller() {
   // sample
-  Serial.begin(9600);
+  // Serial.begin(9600);
 }
 
 data_list::command controller::execute() {
