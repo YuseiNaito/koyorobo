@@ -6,7 +6,7 @@
 namespace koyo {
 namespace action {
 class normal : public base {
-public:
+ public:
   // using base constructor
   using base::base;
 
@@ -15,7 +15,7 @@ public:
 
   data_list::command execute();
 };
-}
-}
+}  // namespace action
+}  // namespace koyo
 
 #endif

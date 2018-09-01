@@ -2,11 +2,11 @@
 
 namespace koyo {
 namespace action {
-  data_list::command normal::execute() {
-    // sample
-    command_.test_data = 2 * signal_.test_data;
-
-    return command_;
-  }
+data_list::command normal::execute() {
+  command_.vel = signal_.vartical * 100;
+  command_.omega = signal_.horizontal * 3.14;
+  command_.weapon = 120 * signal_.button0;
+  return command_;
 }
-}
+}  // namespace action
+}  // namespace koyo
