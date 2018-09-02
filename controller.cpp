@@ -9,24 +9,24 @@ controller::controller()
       dt2_(0),
       dt_max_(1),
       pwm_max_((0xFF)),
-      pwmpin_L1_(5),
-      pwmpin_L2_(6),
-      pwmpin_R1_(9),
-      pwmpin_R2_(10),
-      pwmpin_kick_(11) {}
+      pwmpin_L1_(3),
+      pwmpin_L2_(9),
+      pwmpin_R1_(10),
+      pwmpin_R2_(11),
+      pwmpin_kick_(5) {}
 
 data_list::command controller::execute() {
-  // PWM出力が可能なポートにつながっている場合
   dt1_ = (command_.omega > 0) ? dt_max_ * command_.vel / data_list::vel_max
                              : dt_max_ * command_.vel / data_list::vel_max *
                                    (1 + command_.omega / data_list::omega_max);
   dt2_ = (command_.omega < 0) ? dt_max_ * command_.vel / data_list::vel_max
                              : dt_max_ * command_.vel / data_list::vel_max *
                                    (1 - command_.omega / data_list::omega_max);
+
   // motor_left
   if (dt1_ > 0) {
     analogWrite(pwmpin_L1_, 0);
-    // delay(50); // デッドタイムがいるならディレイ
+    // delay(50);
     analogWrite(pwmpin_L2_, (int)(pwm_max_ * dt1_));
   } else if (dt1_ < 0) {
     analogWrite(pwmpin_L2_, 0);
