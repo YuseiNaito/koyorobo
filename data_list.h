@@ -11,23 +11,23 @@ namespace koyo {
 namespace data_list {
 // for input
 struct signal {
-  double vartical;    // c•ûŒü
-  double horizontal;  // ‰ñ“]•ûŒü
-  bool button0;       // ƒ{ƒ^ƒ“
+  double vartical;
+  double horizontal;
+  bool button0;
 };
 
 // for output
 struct command {
-  double vel;     // ‘¬“x
-  double omega;   // Šp‘¬“x
-  double weapon;  // UŒ‚
+  double vel;
+  double omega;
+  double weapon;
 };
 
-constexpr double wheel_radius{25};
+constexpr double wheel_radius{25.0};
 
-constexpr double vel_max{100 * 2 * M_PI * wheel_radius};
+constexpr double vel_max{100.0 * 2 * M_PI * wheel_radius};
 constexpr double omega_max{M_PI};
-constexpr double weapon_max{100};
+constexpr double weapon_max{100.0};
 constexpr double stick_res_max{F710::stick_res_max};
 }  // namespace data_list
 }  // namespace koyo
