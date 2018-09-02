@@ -14,20 +14,17 @@ class controller {
  private:
   data_list::command command_;
   // test
-  double dt1 = 0;
-  double dt2 = 0;
+  double dt1_;
+  double dt2_;
 
-  const double dt_max = 1;
-  const double vel_max = (0xFF) * 100;
-  const double omega_max = (0xFF) * 3.14;
-  const double weapon_max = 120 * 2;
+  const double dt_max_;
 
-  const int pwm_max = (0xFF);
-  const int pwmpin_L1 = 5;
-  const int pwmpin_L2 = 6;
-  const int pwmpin_R1 = 9;
-  const int pwmpin_R2 = 10;
-  const int pwmpin_kick = 11;
+  const int pwm_max_;
+  const int pwmpin_L1_;
+  const int pwmpin_L2_;
+  const int pwmpin_R1_;
+  const int pwmpin_R2_;
+  const int pwmpin_kick_;
 };
 }  // namespace controller
 }  // namespace koyo
