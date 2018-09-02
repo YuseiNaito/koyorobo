@@ -1,6 +1,8 @@
 #ifndef KOYO_STATE_SWITCHER_H
 #define KOYO_STATE_SWITCHER_H
+
 #include "action_base.h"
+#include "action_normal.h"
 #include "data_list.h"
 
 namespace koyo {
@@ -18,6 +20,8 @@ class state_switcher {
  private:
   const data_list::signal& signal_;
   data_list::signal signals_[10];
+
+  action::normal normal_;
 };
 }  // namespace state_switcher
 }  // namespace koyo
