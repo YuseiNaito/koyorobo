@@ -13,15 +13,15 @@ class state_switcher {
   enum class state { normal };
   state_switcher::state_switcher::state current_state_;
 
-  state_switcher();
+  state_switcher(const data_list::signal& signal);
+  ~state_switcher();
   action::base* execute();
-  void set_signal(const data_list::signal& signal);
 
  private:
   const data_list::signal& signal_;
   data_list::signal signals_[10];
 
-  action::normal normal_;
+  action::normal* normal_;
 };
 }  // namespace state_switcher
 }  // namespace koyo

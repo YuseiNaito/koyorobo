@@ -6,7 +6,10 @@
 
 namespace koyo {
 namespace state_switcher {
-state_switcher::state_switcher() {}
+state_switcher::state_switcher(const data_list::signal& signal)
+    : signal_(signal) {
+  normal_ = new action::normal(signal_);
+}
 
 action::base* state_switcher::execute() {
   constexpr unsigned int signals_length{sizeof(signals_) /
@@ -22,18 +25,11 @@ action::base* state_switcher::execute() {
   // set action
   switch (current_state_) {
     default:
-      return_action_ = &normal_;
+      return_action_ = normal_;
   }
-
-  // set signal
-  return_action_->set_signal(signal_);
 
   return return_action_;
 }
-
-void state_switcher::set_signal(const data_list::signal& signal) {
-  // update signal
-  signal_ = signal;
-}
+state_switcher::~state_switcher() { delete normal_; }
 }  // namespace state_switcher
 }  // namespace koyo

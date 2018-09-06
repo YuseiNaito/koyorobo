@@ -6,9 +6,8 @@ namespace koyo {
 namespace action {
 class base {
  public:
-  explicit base();
+  explicit base(const data_list::signal& signal);
   virtual ~base();
-  void set_signal(const data_list::signal& signal);
   virtual data_list::command execute() = 0;
   const data_list::signal& signal_;
 };
