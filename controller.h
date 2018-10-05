@@ -20,7 +20,7 @@ class controller {
 
   const double dt_max_;
   const int pwm_max_;
-  
+
   const int pwm_pin_L_;
   const int pwm_pin_R_;
   const int pwm_pin_kick_;
@@ -31,7 +31,15 @@ class controller {
   bool motor_pin_R2_;
   bool motor_pin_kick1_;
   bool motor_pin_kick2_;
-  
+
+  struct before {
+    double vel;
+    double omega;
+    double weapon;
+  } before_;
+  double bias_vel;
+  double bias_omega;
+  double bias_weapon;
 };
 }  // namespace controller
 }  // namespace koyo
