@@ -31,7 +31,15 @@ class controller {
   bool motor_pin_R2_;
   bool motor_pin_kick1_;
   bool motor_pin_kick2_;
-  
+
+  struct before {
+  double vel;
+  double omega;
+  double weapon;
+} before_;
+  double bias_vel;
+  double bias_omega;
+  double bias_weapon;
 };
 }  // namespace controller
 }  // namespace koyo
