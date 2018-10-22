@@ -25,12 +25,12 @@ class controller {
   const int pwm_pin_R_;
   const int pwm_pin_kick_;
 
-  bool motor_pin_L1_;
-  bool motor_pin_L2_;
-  bool motor_pin_R1_;
-  bool motor_pin_R2_;
-  bool motor_pin_kick1_;
-  bool motor_pin_kick2_;
+  const int motor_pin_L1_;
+  const int motor_pin_L2_;
+  const int motor_pin_R1_;
+  const int motor_pin_R2_;
+  const int motor_pin_kick1_;
+  const int motor_pin_kick2_;
 
   struct before {
   double vel;

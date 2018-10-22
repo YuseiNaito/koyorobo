@@ -37,6 +37,9 @@ controller::controller()
       // 動作クロックは分周なしの16MHz
       // PWMキャリア波の周波数は16MHz/256=62.5kHz
       */
+      pinMode(pwm_pin_L_, OUTPUT);
+      pinMode(pwm_pin_R_, OUTPUT);
+      pinMode(pwm_pin_kick_, OUTPUT);
       pinMode(motor_pin_L1_, OUTPUT);
       pinMode(motor_pin_L2_, OUTPUT);
       pinMode(motor_pin_R1_, OUTPUT);
@@ -51,12 +54,14 @@ data_list::command controller::execute() {
   before_.omega+=bias_vel*(command_.omega-before_.omega);
   before_.weapon+=bias_vel*(command_.weapon-before_.weapon);
 
+  if(command_.vel==0.0 && before_.vel<before_.vel / (dt_max_*0.03))before_.vel=0.0;//3%以下カット
+
   dt_L_ = (command_.omega > 0) ? dt_max_ * before_.vel / data_list::vel_max
                              : dt_max_ *before_.vel / data_list::vel_max *
-                                   (1 + before_.omega / data_list::omega_max);
+                                   (1 + before_.omega / data_list::omega_max);//test
   dt_R_ = (command_.omega < 0) ? dt_max_ * before_.vel / data_list::vel_max
                              : dt_max_ * before_.vel / data_list::vel_max *
-                                   (1 - before_.omega / data_list::omega_max);
+                                   (1 - before_.omega / data_list::omega_max);//test
   dt_kick_ = before_.weapon / data_list::weapon_max;
 
   // motor_left
@@ -77,7 +82,7 @@ data_list::command controller::execute() {
     //delay?
     digitalWrite(motor_pin_L2_, HIGH);
     
-    analogWrite(pwm_pin_L_, 0);
+    digitalWrite(pwm_pin_L_, LOW);
   }
 
   // motor_right
@@ -98,7 +103,7 @@ data_list::command controller::execute() {
     //delay?
     digitalWrite(motor_pin_R2_, HIGH);
     
-    analogWrite(pwm_pin_R_, 0);
+    digitalWrite(pwm_pin_R_, LOW);
   }
 
   // motor_kick
@@ -113,7 +118,7 @@ data_list::command controller::execute() {
     //delay?
     digitalWrite(motor_pin_kick2_, HIGH);
     
-    analogWrite(pwm_pin_kick_, 0);
+    digitalWrite(pwm_pin_kick_, LOW);
   }
 
   return command_;
