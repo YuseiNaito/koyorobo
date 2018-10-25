@@ -19,9 +19,9 @@ controller::controller()
     motor_pin_R2_(8),
     motor_pin_kick1_(12),
     motor_pin_kick2_(13),
-    bias_vel(0.1),
-    bias_omega(0.1),
-    bias_weapon(0.1)
+    bias_vel(0.05),
+    bias_omega(0.05),
+    bias_weapon(0.05)
 {
   /*
     // fast PWM mode
