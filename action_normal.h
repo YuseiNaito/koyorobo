@@ -1,5 +1,6 @@
 #ifndef KOYO_ACTION_NORMAL_H
 #define KOYO_ACTION_NORMAL_H
+
 #include "action_base.h"
 #include "data_list.h"
 

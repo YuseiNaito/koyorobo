@@ -4,7 +4,7 @@
 namespace koyo {
 namespace F710 {
 // -255 ~ +255
-constexpr double stick_res_max{255};
+constexpr double stick_res_max{9};
 }  // namespace F710
 }  // namespace koyo
 

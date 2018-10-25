@@ -2,8 +2,6 @@
 
 #include "state_switcher.h"
 
-#include <new.h>
-
 namespace koyo {
 namespace state_switcher {
 state_switcher::state_switcher(const data_list::signal& signal)

@@ -1,5 +1,6 @@
 #ifndef KOYO_ACTION_BASE_H
 #define KOYO_ACTION_BASE_H
+
 #include "data_list.h"
 
 namespace koyo {
