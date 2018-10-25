@@ -11,8 +11,8 @@ controller::controller()
     dt_max_(1),
     pwm_max_((0xFF)),
     pwm_pin_L_(3),
-    pwm_pin_R_(10),
-    pwm_pin_kick_(5),
+    pwm_pin_R_(11),//before 10
+    pwm_pin_kick_(10),//before 5
     motor_pin_L1_(2),
     motor_pin_L2_(4),
     motor_pin_R1_(7),
@@ -23,20 +23,23 @@ controller::controller()
     bias_omega(0.05),
     bias_weapon(0.05)
 {
-  /*
-    // fast PWM mode
+  
+    // fast PWM mode:pwm_pin_L_&pwm_pin_R_
+    /*
     TCCR0A = _BV(COM0A1)|_BV(WGM01)|_BV(WGM00); // TCCR0A = B10000011;
     TCCR0B = _BV(CS00); // TCCR0B = B00000001;
+    */
     TCCR2A = _BV(COM0A1)|_BV(WGM01)|_BV(WGM00); // TCCR0A = B10000011;
     TCCR2B = _BV(CS00); // TCCR0B = B00000001;
+    
     // 動作クロックは分周なしの8MHz
     // PWMキャリア波の周波数は8MHz/256=31.25kHz
     TCCR1A = _BV(COM0A1)|_BV(WGM01)|_BV(WGM00); // TCCR0A = B10000011;
     TCCR1B = _BV(CS00); // TCCR0B = B00000001;
-    // fast PWM mode
+    // fast PWM mode:pwm_pin_kick_
     // 動作クロックは分周なしの16MHz
     // PWMキャリア波の周波数は16MHz/256=62.5kHz
-  */
+  
   pinMode(pwm_pin_L_, OUTPUT);
   pinMode(pwm_pin_R_, OUTPUT);
   pinMode(pwm_pin_kick_, OUTPUT);
