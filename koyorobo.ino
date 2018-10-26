@@ -14,6 +14,34 @@ koyo::state_switcher::state_switcher switcher(signal);
 
 void setup() {
   Serial.begin(9600);
+  
+    /*
+     * 
+    TCCR0A = _BV(COM0A1)|_BV(WGM01)|_BV(WGM00); // TCCR0A = B10000011;
+    TCCR0B = _BV(CS00); // TCCR0B = B00000001;
+    
+    TCCR2A = _BV(COM0A1)|_BV(WGM01)|_BV(WGM00); // TCCR0A = B10000011;
+    TCCR2B = _BV(CS00); // TCCR0B = B00000001;
+    
+    // 動作クロックは分周なしの8MHz
+    // PWMキャリア波の周波数は8MHz/256=31.25kHz
+    TCCR1A = _BV(COM0A1)|_BV(WGM01)|_BV(WGM00); // TCCR0A = B10000011;
+    TCCR1B = _BV(CS00); // TCCR0B = B00000001;
+    // fast PWM mode:pwm_pin_kick_
+    // 動作クロックは分周なしの16MHz
+    // PWMキャリア波の周波数は16MHz/256=62.5kHz
+    */
+    // fast PWM mode:pwm_pin_L_&pwm_pin_R_
+    //TCCR2A = _BV(COM0A1)|_BV(WGM01)|_BV(WGM00); // TCCR0A = B10000011;
+    TCCR2B = _BV(CS00); // TCCR0B = B00000001;
+    
+    // 動作クロックは分周なしの8MHz
+    // PWMキャリア波の周波数は8MHz/256=31.25kHz
+    //TCCR1A = _BV(COM0A1)|_BV(WGM01)|_BV(WGM00); // TCCR0A = B10000011;
+    TCCR1B = _BV(CS00); // TCCR0B = B00000001;
+    // fast PWM mode:pwm_pin_kick_
+    // 動作クロックは分周なしの16MHz
+    // PWMキャリア波の周波数は16MHz/256=62.5kHz
 }
 
 void loop() {

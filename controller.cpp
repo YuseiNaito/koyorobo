@@ -1,5 +1,5 @@
 #include "Arduino.h"
-
+//#include <math.h>
 #include "controller.h"
 
 namespace koyo {
@@ -18,28 +18,9 @@ controller::controller()
     motor_pin_R1_(7),
     motor_pin_R2_(8),
     motor_pin_kick1_(12),
-    motor_pin_kick2_(13),
-    bias_vel(0.05),
-    bias_omega(0.05),
-    bias_weapon(0.05)
+    motor_pin_kick2_(13)
 {
-  
-    // fast PWM mode:pwm_pin_L_&pwm_pin_R_
-    /*
-    TCCR0A = _BV(COM0A1)|_BV(WGM01)|_BV(WGM00); // TCCR0A = B10000011;
-    TCCR0B = _BV(CS00); // TCCR0B = B00000001;
-    */
-    TCCR2A = _BV(COM0A1)|_BV(WGM01)|_BV(WGM00); // TCCR0A = B10000011;
-    TCCR2B = _BV(CS00); // TCCR0B = B00000001;
-    
-    // 動作クロックは分周なしの8MHz
-    // PWMキャリア波の周波数は8MHz/256=31.25kHz
-    TCCR1A = _BV(COM0A1)|_BV(WGM01)|_BV(WGM00); // TCCR0A = B10000011;
-    TCCR1B = _BV(CS00); // TCCR0B = B00000001;
-    // fast PWM mode:pwm_pin_kick_
-    // 動作クロックは分周なしの16MHz
-    // PWMキャリア波の周波数は16MHz/256=62.5kHz
-  
+
   pinMode(pwm_pin_L_, OUTPUT);
   pinMode(pwm_pin_R_, OUTPUT);
   pinMode(pwm_pin_kick_, OUTPUT);
@@ -52,22 +33,25 @@ controller::controller()
   before_.vel = 0.0;
   before_.omega = 0.0;
   before_.weapon = 0.0;
+  bias_.vel = 0.05;
+  bias_.omega = 0.05;
+  bias_.weapon = 0.05;
 }
 
 data_list::command controller::execute() {
 
-  before_.vel += bias_vel * (command_.vel - before_.vel);
-  before_.omega += bias_omega * (command_.omega - before_.omega);
-  before_.weapon += bias_weapon * (command_.weapon - before_.weapon);
+  before_.vel += bias_.vel * (command_.vel - before_.vel);
+  before_.omega += bias_.omega * (command_.omega - before_.omega);
+  before_.weapon += bias_.weapon * (command_.weapon - before_.weapon);
 
-  if (command_.vel == 0.0 && before_.vel < (data_list::vel_max * 0.03) )before_.vel = 0.0; //3%以下カット
-  if (command_.omega == 0.0 && before_.omega < (data_list::omega_max * 0.03) )before_.omega = 0.0; //3%以下カット
-  if (command_.weapon == 0.0 && before_.weapon < (data_list::weapon_max * 0.03) )before_.weapon = 0.0; //3%以下カット
+  if (command_.vel == 0.0 && fabs(before_.vel) < (data_list::vel_max * 0.05) )before_.vel = 0.0; //5%以下カット
+  if (command_.omega == 0.0 && fabs(before_.omega) < (data_list::omega_max * 0.05) )before_.omega = 0.0; //5%以下カット
+  if (command_.weapon == 0.0 && fabs(before_.weapon) < (data_list::weapon_max * 0.05) )before_.weapon = 0.0; //5%以下カット
 
-  dt_L_ = (command_.omega > 0) ? dt_max_ * before_.vel / data_list::vel_max
+  dt_L_ = (before_.omega > 0) ? dt_max_ * before_.vel / data_list::vel_max
           : dt_max_ * before_.vel / data_list::vel_max *
           (1 + before_.omega / data_list::omega_max);//test
-  dt_R_ = (command_.omega < 0) ? dt_max_ * before_.vel / data_list::vel_max
+  dt_R_ = (before_.omega < 0) ? dt_max_ * before_.vel / data_list::vel_max
           : dt_max_ * before_.vel / data_list::vel_max *
           (1 - before_.omega / data_list::omega_max);//test
   dt_kick_ = before_.weapon / data_list::weapon_max;

@@ -38,9 +38,11 @@ class controller {
     double omega;
     double weapon;
   } before_;
-  double bias_vel;
-  double bias_omega;
-  double bias_weapon;
+  struct bias {
+    double vel;
+    double omega;
+    double weapon;
+  } bias_;
 };
 }  // namespace controller
 }  // namespace koyo
